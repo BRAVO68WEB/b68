@@ -1,0 +1,21 @@
+{
+    "name": "bravo68web-api-rewrite",
+    "version": "1.0.0",
+    "description": "Rewrite for Bravo68web API",
+    "main": "src/",
+    "repository": "git@github.com:BRAVO68WEB/api-rewrite.git",
+    "author": "Jyotirmoy Bandyopadhyaya [Bravo68] <jbandyopadhayaya@gmail.com>",
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+        "husky": "^8.0.2",
+        "lint-staged": "^13.0.4",
+        "turbo": "^1.6.3"
+    },
+    "scripts": {
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
+    }
+}
