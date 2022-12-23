@@ -1,7 +1,7 @@
 import auth from './auth.js'
 import readline from 'readline'
 
-export const configure = () => {
+export default () => {
     console.log('Configure the CLI')
     const rl = readline.createInterface({
         input: process.stdin,
