@@ -16,6 +16,6 @@ app.use(helmet())
 
 app.use('/', routes)
 
-app.listen(5000, () => {
+app.listen(5000, '0.0.0.0', () => {
     console.log(chalk.green('Server is running on port 5000'))
 })
