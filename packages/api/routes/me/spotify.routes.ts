@@ -1,18 +1,10 @@
 import { Router } from 'express'
 import { makeResponse } from '../../libs'
+import SpotifyController from '../../controllers/spotify.controller'
 
 const router = Router()
+const { fetchSpotifyTopSongs } = new SpotifyController()
 
-router.get('/', (req, res) => {
-    res.send(makeResponse({ message: 'Hello World!' }))
-})
-
-router.all('/err', async (req, res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/top', fetchSpotifyTopSongs)
 
 export default router

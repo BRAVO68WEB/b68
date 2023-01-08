@@ -1,11 +1,16 @@
 import { Router } from 'express'
 import { makeResponse } from '../libs'
+import SpotifyController from '../controllers/spotify.controller'
 
 const router = Router()
+const { login, loginCallback } = new SpotifyController()
 
 router.get('/', (req, res) => {
     res.send(makeResponse({ message: 'Hello World!' }))
 })
+
+router.get('/spotify', login)
+router.get('/spotify/callback', loginCallback)
 
 router.all('/err', async (req, res, next) => {
     try {

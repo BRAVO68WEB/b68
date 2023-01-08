@@ -1,18 +1,10 @@
 import { Router } from 'express'
 import { makeResponse } from '../../libs'
+import HashnodeController from '../../controllers/hashnode.controller'
 
 const router = Router()
+const { getProfile } = new HashnodeController()
 
-router.get('/', (req, res) => {
-    res.send(makeResponse({ message: 'Hello World!' }))
-})
-
-router.all('/err', async (req, res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/', getProfile)
 
 export default router

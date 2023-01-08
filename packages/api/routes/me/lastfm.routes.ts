@@ -1,18 +1,13 @@
 import { Router } from 'express'
-import { makeResponse } from '../../libs'
+import LastFMController from '../../controllers/lastfm.controller'
+
+const { fetchTop, fetchCurrent, fetchLoved, fetchUser } = new LastFMController()
 
 const router = Router()
 
-router.get('/', (req, res) => {
-    res.send(makeResponse({ message: 'Hello World!' }))
-})
-
-router.all('/err', async (req, res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/', fetchUser)
+router.get('/top', fetchTop)
+router.get('/loved', fetchLoved)
+router.all('/current', fetchCurrent)
 
 export default router

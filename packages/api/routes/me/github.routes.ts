@@ -1,18 +1,23 @@
 import { Router } from 'express'
-import { makeResponse } from '../../libs'
+import GithubController from '../../controllers/github.controller'
 
 const router = Router()
+const {
+    fetchSelfGithubUser,
+    fetchSelfGithubUserEvents,
+    fetchSelfGithubUserFollowers,
+    fetchSelfGithubUserFollowing,
+    fetchSelfGithubUserGists,
+    fetchSelfGithubUserRepos,
+    fetchSelfGithubUserStarred,
+} = new GithubController()
 
-router.get('/', (req, res) => {
-    res.send(makeResponse({ message: 'Hello World!' }))
-})
-
-router.all('/err', async (req, res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/user', fetchSelfGithubUser)
+router.get('/events', fetchSelfGithubUserEvents)
+router.get('/followers', fetchSelfGithubUserFollowers)
+router.get('/following', fetchSelfGithubUserFollowing)
+router.get('/gists', fetchSelfGithubUserGists)
+router.get('/repos', fetchSelfGithubUserRepos)
+router.get('/starred', fetchSelfGithubUserStarred)
 
 export default router

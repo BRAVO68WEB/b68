@@ -1,5 +1,10 @@
 import path from 'path'
 import { readdirSync } from 'fs'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 import { Router } from 'express'
 
@@ -12,6 +17,7 @@ const loadRoutes = async (dirPath: string, prefix = '/') => {
     readdirSync(dirPath, {
         withFileTypes: true,
     }).forEach(async (f) => {
+        // console.log(f)
         if (f.isFile()) {
             if (f.name == thisFileName) return
 

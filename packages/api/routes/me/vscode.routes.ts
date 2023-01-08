@@ -1,18 +1,10 @@
 import { Router } from 'express'
-import { makeResponse } from '../../libs'
+import VSCodeController from '../../controllers/vscode.controller'
+
+const { fetchList } = new VSCodeController()
 
 const router = Router()
 
-router.get('/', (req, res) => {
-    res.send(makeResponse({ message: 'Hello World!' }))
-})
-
-router.all('/err', async (req, res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/', fetchList)
 
 export default router

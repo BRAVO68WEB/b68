@@ -3,10 +3,11 @@ import { PaginationType } from '../types'
 export const makeResponse = (
     data: any,
     meta_data: any = null,
-    message = 'Success'
+    message = 'Success',
+    error = false
 ) => ({
     message,
-    error: false,
+    error,
     meta_data,
     data,
 })

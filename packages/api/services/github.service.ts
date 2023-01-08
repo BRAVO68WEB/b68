@@ -1,48 +1,84 @@
 import axios from '../helpers/axios_client'
 
-export const getGithubUser = async (username: string) => {
-    const { data } = await axios.get(`https://api.github.com/users/${username}`)
-    return data
-}
+export default class Github {
+    public getGithubUser = async () => {
+        const { data } = await axios.get(`https://api.github.com/user`, {
+            headers: {
+                Autherization: `token ${process.env.GH_TOKEN}`,
+            },
+        })
+        return data
+    }
 
-export const getGithubUserRepos = async (username: string) => {
-    const { data } = await axios.get(
-        `https://api.github.com/users/${username}/repos`
-    )
-    return data
-}
+    public getGithubUserRepos = async (username: string) => {
+        const { data } = await axios.get(
+            `https://api.github.com/users/${username}/repos`,
+            {
+                headers: {
+                    Autherization: `token ${process.env.GH_TOKEN}`,
+                },
+            }
+        )
+        return data
+    }
 
-export const getGithubUserGists = async (username: string) => {
-    const { data } = await axios.get(
-        `https://api.github.com/users/${username}/gists`
-    )
-    return data
-}
+    public getGithubUserGists = async (username: string) => {
+        const { data } = await axios.get(
+            `https://api.github.com/users/${username}/gists`,
+            {
+                headers: {
+                    Autherization: `token ${process.env.GH_TOKEN}`,
+                },
+            }
+        )
+        return data
+    }
 
-export const getGithubUserFollowers = async (username: string) => {
-    const { data } = await axios.get(
-        `https://api.github.com/users/${username}/followers`
-    )
-    return data
-}
+    public getGithubUserFollowers = async (username: string) => {
+        const { data } = await axios.get(
+            `https://api.github.com/users/${username}/followers`,
+            {
+                headers: {
+                    Autherization: `token ${process.env.GH_TOKEN}`,
+                },
+            }
+        )
+        return data
+    }
 
-export const getGithubUserFollowing = async (username: string) => {
-    const { data } = await axios.get(
-        `https://api.github.com/users/${username}/following`
-    )
-    return data
-}
+    public getGithubUserFollowing = async (username: string) => {
+        const { data } = await axios.get(
+            `https://api.github.com/users/${username}/following`,
+            {
+                headers: {
+                    Autherization: `token ${process.env.GH_TOKEN}`,
+                },
+            }
+        )
+        return data
+    }
 
-export const getGithubUserStarred = async (username: string) => {
-    const { data } = await axios.get(
-        `https://api.github.com/users/${username}/starred`
-    )
-    return data
-}
+    public getGithubUserStarred = async (username: string) => {
+        const { data } = await axios.get(
+            `https://api.github.com/users/${username}/starred`,
+            {
+                headers: {
+                    Autherization: `token ${process.env.GH_TOKEN}`,
+                },
+            }
+        )
+        return data
+    }
 
-export const getGithubUserEvents = async (username: string) => {
-    const { data } = await axios.get(
-        `https://api.github.com/users/${username}/events`
-    )
-    return data
+    public getGithubUserEvents = async (username: string) => {
+        const { data } = await axios.get(
+            `https://api.github.com/users/${username}/events`,
+            {
+                headers: {
+                    Autherization: `token ${process.env.GH_TOKEN}`,
+                },
+            }
+        )
+        return data
+    }
 }
