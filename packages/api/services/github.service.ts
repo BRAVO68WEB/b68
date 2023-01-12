@@ -1,10 +1,13 @@
 import axios from '../helpers/axios_client'
+import { configKeys } from '../'
+
+const config = configKeys
 
 export default class Github {
     public getGithubUser = async () => {
         const { data } = await axios.get(`https://api.github.com/user`, {
             headers: {
-                Autherization: `token ${process.env.GH_TOKEN}`,
+                Authorization: `token ${config.GH_TOKEN}`,
             },
         })
         return data
@@ -15,7 +18,7 @@ export default class Github {
             `https://api.github.com/users/${username}/repos`,
             {
                 headers: {
-                    Autherization: `token ${process.env.GH_TOKEN}`,
+                    Authorization: `token ${process.env.GH_TOKEN}`,
                 },
             }
         )
@@ -27,7 +30,7 @@ export default class Github {
             `https://api.github.com/users/${username}/gists`,
             {
                 headers: {
-                    Autherization: `token ${process.env.GH_TOKEN}`,
+                    Authorization: `token ${process.env.GH_TOKEN}`,
                 },
             }
         )
@@ -39,7 +42,7 @@ export default class Github {
             `https://api.github.com/users/${username}/followers`,
             {
                 headers: {
-                    Autherization: `token ${process.env.GH_TOKEN}`,
+                    Authorization: `token ${process.env.GH_TOKEN}`,
                 },
             }
         )
@@ -51,7 +54,7 @@ export default class Github {
             `https://api.github.com/users/${username}/following`,
             {
                 headers: {
-                    Autherization: `token ${process.env.GH_TOKEN}`,
+                    Authorization: `token ${process.env.GH_TOKEN}`,
                 },
             }
         )
@@ -63,7 +66,7 @@ export default class Github {
             `https://api.github.com/users/${username}/starred`,
             {
                 headers: {
-                    Autherization: `token ${process.env.GH_TOKEN}`,
+                    Authorization: `token ${process.env.GH_TOKEN}`,
                 },
             }
         )
@@ -75,7 +78,7 @@ export default class Github {
             `https://api.github.com/users/${username}/events`,
             {
                 headers: {
-                    Autherization: `token ${process.env.GH_TOKEN}`,
+                    Authorization: `token ${process.env.GH_TOKEN}`,
                 },
             }
         )

@@ -1,18 +1,13 @@
 import { Router } from 'express'
-import { makeResponse } from '../../../libs'
+import OsuController from '../../../controllers/osu.controller'
 
 const router = Router()
+const { fetchBestScores, fetchFavBeatmaps, fetchRecentScores, fetchUser } =
+    new OsuController()
 
-router.get('/', (req, res) => {
-    res.send(makeResponse({ message: 'Hello World!' }))
-})
-
-router.all('/err', async (req, res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/user', fetchUser)
+router.get('/best', fetchBestScores)
+router.get('/recent', fetchRecentScores)
+router.get('/fav', fetchFavBeatmaps)
 
 export default router

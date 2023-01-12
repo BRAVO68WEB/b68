@@ -1,0 +1,33 @@
+name: Deploy to Server
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Set up SSH key
+              uses: actions/ssh-auth@v1
+              with:
+                  ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+            - name: Copy code to server
+              run: scp -r -o StrictHostKeyChecking=no -P ${{ secrets.SERVER_SSH_PORT }} . ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:/path/to/app/
+
+            - name: Build and Update Container
+              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd /path/to/app && docker build -t my-image ."
+
+            - name: stop and remove previous container
+              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "export CONTAINER_ID=$(docker ps -q --filter ancestor='my-image:latest')"
+
+            - name: start new container
+              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "if [ -n "$CONTAINER_ID" ]; then docker stop "$CONTAINER_ID";docker rm "$CONTAINER_ID"; fi"
+
+            - name: start new container
+              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker run -d --name my-container my-image"

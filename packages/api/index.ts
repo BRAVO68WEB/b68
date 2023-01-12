@@ -14,6 +14,8 @@ export const app: express.Application = express()
 
 hgqlInit()
 
+console.log('🚀', '@b68/api', 'v' + pkg.version)
+
 const isDev: boolean = process.env.NODE_ENV == 'production'
 console.log(isDev ? '🚀 Production Mode' : '🚀 Development Mode')
 const configs = new configStore(isDev)

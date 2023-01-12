@@ -34,7 +34,7 @@ interface IConfigKeys {
     AWS_REGION: string
 }
 
-export default class configStoreFactory {
+export default class ConfigStoreFactory {
     public configStoreType: IconfigStore
 
     constructor(isProd: boolean = false) {
