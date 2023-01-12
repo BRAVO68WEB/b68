@@ -1,33 +1,33 @@
-name: Deploy to Server
+# name: Deploy to Server
 
-on:
-    push:
-        branches:
-            - main
+# on:
+#     push:
+#         branches:
+#             - main
 
-jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+# jobs:
+#     deploy:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Checkout code
+#               uses: actions/checkout@v2
 
-            - name: Set up SSH key
-              uses: actions/ssh-auth@v1
-              with:
-                  ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+#             - name: Set up SSH key
+#               uses: actions/ssh-auth@v1
+#               with:
+#                   ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            - name: Copy code to server
-              run: scp -r -o StrictHostKeyChecking=no -P ${{ secrets.SERVER_SSH_PORT }} . ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:/home/bravo68web/projects/b68
+#             - name: Copy code to server
+#               run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd /home/bravo68web/projects/b68/ && git pull"
 
-            - name: Build and Update Container
-              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd /home/bravo68web/projects/b68/packages/api && docker build -t b68-api ."
+#             - name: Build and Update Container
+#               run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd /home/bravo68web/projects/b68/packages/api && docker build -t b68-api ."
 
-            - name: stop and remove previous container
-              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "export CONTAINER_ID=$(docker ps -q --filter ancestor='b68-api:latest')"
+#             - name: stop and remove previous container
+#               run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "export CONTAINER_ID=$(docker ps -q --filter ancestor='b68-api:latest')"
 
-            - name: start new container
-              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "if [ -n "$CONTAINER_ID" ]; then docker stop "$CONTAINER_ID";docker rm "$CONTAINER_ID"; fi"
+#             - name: start new container
+#               run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "if [ -n "$CONTAINER_ID" ]; then docker stop "$CONTAINER_ID";docker rm "$CONTAINER_ID"; fi"
 
-            - name: start new container
-              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker run -d --name b68-api b68-api"
+#             - name: start new container
+#               run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker run -d --name b68-api b68-api"
