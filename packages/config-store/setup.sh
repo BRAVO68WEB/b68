@@ -12,7 +12,7 @@ rm -rf $ENV_PATH
 # Save the input to a file
 echo "BASIC_USERNAME=$username" >> $ENV_PATH
 echo "BASIC_PASSWORD=$password" >> $ENV_PATH
-echo "PORT=$port" >> $ENV_PATH
+echo "CS_PORT=$port" >> $ENV_PATH
 
 sed "s/0000/$port/g" packages/config-store/Dockerfile.example > packages/config-store/Dockerfile
 
