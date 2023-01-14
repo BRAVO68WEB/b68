@@ -14,5 +14,7 @@ echo "BASIC_USERNAME=$username" >> $ENV_PATH
 echo "BASIC_PASSWORD=$password" >> $ENV_PATH
 echo "PORT=$port" >> $ENV_PATH
 
+sed "s/0000/$port/g" packages/config-store/Dockerfile.example > packages/config-store/Dockerfile
+
 # Echo a message to confirm the file has been saved
 echo "Configuration saved to packages/config-store/.env"

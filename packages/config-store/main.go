@@ -70,7 +70,7 @@ func main() {
 
 	app.Static("/private", "private")
 
-	port := goDotEnvVariable("PORT")
+	port := goDotEnvVariable("CS_PORT")
 	if port == "" {
 		port = "3000"
 	}

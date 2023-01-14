@@ -1,0 +1,6 @@
+Dockerfile
+.env
+public/*
+private/*
+!public/.gitkeep
+!private/.gitkeep

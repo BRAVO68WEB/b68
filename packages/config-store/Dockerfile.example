@@ -8,5 +8,6 @@ RUN go get
 
 RUN go build
 
-CMD ["config-store"]
+EXPOSE 0000
 
+CMD ["/app/config-store"]
