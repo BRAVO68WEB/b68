@@ -36,7 +36,7 @@
         "dev:hasura": "cd hasura && hasura --skip-update-check  --envfile ../.env console",
         "dev:express": "cross-env NODE_ENV=production nodemon -x node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm index.ts --signal SIGKILL",
         "build": "tsc",
-        "start": "node --es-module-specifier-resolution=node ./build/index.js",
+        "start": "node --es-module-specifier-resolution=node --loader ts-node/esm ./build/index.js",
         "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md}\""
     },
     "devDependencies": {
