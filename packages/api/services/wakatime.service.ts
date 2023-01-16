@@ -6,7 +6,7 @@ export default class WakatimeService {
             'https://wakatime.com/api/v1/users/current?api_key=' +
                 process.env.WAKATIME_API_KEY
         )
-        return data
+        return data.data
     }
 
     public getWakatimeCodeStatesAllTime = async () => {
@@ -14,7 +14,7 @@ export default class WakatimeService {
             'https://wakatime.com/api/v1/users/current/all_time_since_today?api_key=' +
                 process.env.WAKATIME_API_KEY
         )
-        return data
+        return data.data
     }
 
     public getWakatimeCodeStatsLast7Days = async () => {
@@ -23,8 +23,10 @@ export default class WakatimeService {
                 process.env.WAKATIME_API_KEY
         )
         return {
-            main: data.categories[0].text,
-            avg: data.human_readable_daily_average_including_other_language,
+            human_readable_daily_average_including_other_language:
+                data.data.human_readable_daily_average_including_other_language,
+            human_readable_total_including_other_language:
+                data.data.human_readable_total_including_other_language,
         }
     }
 
@@ -33,6 +35,6 @@ export default class WakatimeService {
             'https://wakatime.com/api/v1/users/current/stats/last_7_days?api_key=' +
                 process.env.WAKATIME_API_KEY
         )
-        return data.languages
+        return data.data.languages
     }
 }

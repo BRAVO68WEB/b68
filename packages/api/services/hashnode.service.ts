@@ -56,6 +56,6 @@ export default class HashnodeService {
                 },
             }
         )
-        return data.data
+        return data.data.user
     }
 }
