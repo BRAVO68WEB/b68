@@ -28,4 +28,4 @@ jobs:
               run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "source .nvm/nvm.sh && cd /home/bravo68web/projects/b68/packages/api && yarn && yarn build"
 
             - name: restart pm2 service
-              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "source .nvm/nvm.sh && && pm2 restart b68-api"
+              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "source .nvm/nvm.sh && pm2 restart b68-api"
