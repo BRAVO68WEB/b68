@@ -25,7 +25,7 @@ jobs:
               run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd /home/bravo68web/projects/b68/ && git pull"
 
             - name: Build and Update Package
-              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "cd /home/bravo68web/projects/b68/packages/api && yarn && yarn build"
+              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "source ~/.bashrc && cd /home/bravo68web/projects/b68/packages/api && yarn && yarn build"
 
             - name: restart pm2 service
-              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "pm2 restart b68-api"
+              run: ssh -o StrictHostKeyChecking=no -p ${{ secrets.SERVER_SSH_PORT }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "source ~/.bashrc && pm2 restart b68-api"
