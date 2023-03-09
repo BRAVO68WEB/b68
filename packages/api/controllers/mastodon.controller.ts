@@ -4,12 +4,22 @@ import { Request, Response } from 'express'
 
 export default class MastodonController extends MastodonService {
     public fetchMastodonProfile = async (req: Request, res: Response) => {
-        const data = await this.getMastodonProfile()
-        return res.send(makeResponse(data))
+        try{
+            const data = await this.getMastodonProfile()
+            return res.send(makeResponse(data))
+        }
+        catch (err: any){
+            res.send(makeResponse(err.message, {}, 'Failed', true))
+        }
     }
 
     public fetchMastodonStatuses = async (req: Request, res: Response) => {
-        const data = await this.getMastodonStatuses()
-        return res.send(makeResponse(data))
+        try {
+            const data = await this.getMastodonStatuses()
+            return res.send(makeResponse(data))
+        }
+        catch (err: any) {
+            res.send(makeResponse(err.message, {}, 'Failed', true))
+        }
     }
 }

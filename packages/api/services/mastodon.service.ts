@@ -10,7 +10,10 @@ export default class MastodonService {
 
     public getMastodonStatuses = async () => {
         const { data } = await axiosInstance.get(
-            'https://fosstodon.org/api/v1/accounts/109612266657666903/statuses'
+            'https://fosstodon.org/api/v1/accounts/109612266657666903/statuses',
+            {
+                timeout: 10000
+            }
         )
         return data
     }
