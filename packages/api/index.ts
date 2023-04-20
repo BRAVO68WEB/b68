@@ -5,30 +5,30 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 
 import { hgqlInit } from './helpers'
-import cacheClient from './helpers/cache.factory';
+import cacheClient from './helpers/cache.factory'
 import routes from './routes'
 import { errorHandler, notFoundHandler } from './libs'
 import pkg from './package.json' assert { type: 'json' }
-import configStore, { IConfigKeys } from './configs';
+import configStore, { IConfigKeys } from './configs'
 
 export const app: express.Application = express()
 
 console.log('🚀', '@b68/api', 'v' + pkg.version)
 
 hgqlInit()
-cacheClient.init();
+cacheClient.init()
 
 const isDev: boolean = process.env.NODE_ENV == 'production'
 console.log(isDev ? '🚀 Production Mode' : '👷 Development Mode')
 const configs = new configStore(isDev)
-const configKeys: IConfigKeys = await configs.getConfigStore() as IConfigKeys
+const configKeys: IConfigKeys = (await configs.getConfigStore()) as IConfigKeys
 
 app.use(cors())
 app.use(helmet())
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs')
 
 console.log('☄ ', 'Base Route', '/')
 

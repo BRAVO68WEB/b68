@@ -1,9 +1,11 @@
 import fs from 'fs'
 import { parse as parseFile } from 'envfile'
-import { Issuer } from 'openid-client';
+import { Issuer } from 'openid-client'
 
-const keyCloakIssuer : Issuer = await Issuer.discover(process.env.KEYCLOAK_AUTH_SERVER_URL!);
-console.log('🔐 Connected to Keycloak');
+const keyCloakIssuer: Issuer = await Issuer.discover(
+    process.env.KEYCLOAK_AUTH_SERVER_URL!
+)
+console.log('🔐 Connected to Keycloak')
 
 type IconfigStore = 'development' | 'production'
 
@@ -48,7 +50,7 @@ export interface IConfigKeys {
 export default class ConfigStoreFactory {
     public configStoreType: IconfigStore
 
-    constructor(isProd: boolean = false) {
+    constructor(isProd = false) {
         if (isProd) {
             this.configStoreType = 'production'
         } else {
@@ -57,8 +59,8 @@ export default class ConfigStoreFactory {
     }
 
     public async getConfigStore() {
-        const publicKEY = fs.readFileSync('./jwtRS256.key', 'utf8');
-		const privateKEY = fs.readFileSync('./jwtRS256.key.pub', 'utf8');
+        const publicKEY = fs.readFileSync('./jwtRS256.key', 'utf8')
+        const privateKEY = fs.readFileSync('./jwtRS256.key.pub', 'utf8')
         if (this.configStoreType === 'development') {
             const envContent = await fs.readFileSync(`./.env`, 'utf8')
             const env: Partial<IConfigKeys> = await parseFile(envContent)
@@ -73,8 +75,8 @@ export default class ConfigStoreFactory {
             )
             reqEnvContent = reqEnvContent.replaceAll('=', '')
             reqEnvContent = reqEnvContent.split('\n')
-            let missingKeys: string[] = []
-            let env: Partial<IConfigKeys> = {}
+            const missingKeys: string[] = []
+            const env: Partial<IConfigKeys> = {}
             env.PUBLIC_KEY = publicKEY
             env.PRIVATE_KEY = privateKEY
             env.KEYCLOAK_ISSUER = keyCloakIssuer

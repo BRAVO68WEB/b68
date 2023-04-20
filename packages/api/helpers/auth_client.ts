@@ -1,4 +1,4 @@
-import { configKeys } from "..";
+import { configKeys } from '..'
 
 const { KEYCLOAK_ISSUER } = configKeys
 
@@ -7,7 +7,9 @@ const authConfig = {
     'auth-server-url': configKeys.KEYCLOAK_AUTH_SERVER_URL,
     'ssl-required': 'all',
     resource: configKeys.KEYCLOAK_CLIENT_ID,
-    credentials: { 'secret-jwt': { secret: configKeys.KEYCLOAK_CLIENT_SECRET } },
+    credentials: {
+        'secret-jwt': { secret: configKeys.KEYCLOAK_CLIENT_SECRET },
+    },
     'confidential-port': 0,
     redirect_uri: configKeys.KEYCLOAK_REDIRECT_URI,
     client_secret: configKeys.KEYCLOAK_CLIENT_SECRET,

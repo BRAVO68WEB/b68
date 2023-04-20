@@ -11,7 +11,10 @@ export default class AuthController {
     }
 
     public callback = async (req: Request, res: Response) => {
-        const { session_state, code } = req.query as { session_state: string, code: string}
+        const { session_state, code } = req.query as {
+            session_state: string
+            code: string
+        }
         res.send(makeResponse(await verify(session_state, code)))
     }
 

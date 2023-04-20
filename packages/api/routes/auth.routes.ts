@@ -11,8 +11,8 @@ router.get('/signin/callback', authController.callback)
 
 router.get('/me', middleware, authController.me as any)
 
-router.get('/', function(req, res) {
-    res.render('pages/auth');
-});
+router.get('/', function (req, res) {
+    res.render('pages/auth')
+})
 
 export default router

@@ -4,11 +4,10 @@ import { Request, Response } from 'express'
 
 export default class MastodonController extends MastodonService {
     public fetchMastodonProfile = async (req: Request, res: Response) => {
-        try{
+        try {
             const data = await this.getMastodonProfile()
             return res.send(makeResponse(data))
-        }
-        catch (err: any){
+        } catch (err: any) {
             res.send(makeResponse(err.message, {}, 'Failed', true))
         }
     }
@@ -17,8 +16,7 @@ export default class MastodonController extends MastodonService {
         try {
             const data = await this.getMastodonStatuses()
             return res.send(makeResponse(data))
-        }
-        catch (err: any) {
+        } catch (err: any) {
             res.send(makeResponse(err.message, {}, 'Failed', true))
         }
     }
