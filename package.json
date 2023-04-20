@@ -7,16 +7,27 @@
     "license": "MIT",
     "private": true,
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.54.1",
+        "@typescript-eslint/parser": "^5.54.1",
+        "eslint": "^8.35.0",
+        "eslint-config-prettier": "^8.7.0",
         "husky": "^8.0.2",
         "lerna": "^6.1.0",
-        "lint-staged": "^13.0.4",
-        "turbo": "^1.6.3"
+        "lint-staged": "^13.0.4"
     },
     "scripts": {
-        "prepare": "husky install"
+        "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
     },
     "lint-staged": {
-        "**/*": "prettier --write --ignore-unknown"
+        "**/*.{js,json,ts,css}": [
+            "eslint --fix",
+            "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,scss,md}\""
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     },
     "workspaces": [
         "packages/*"

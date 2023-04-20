@@ -132,3 +132,6 @@ dist
 
 **/jwtRS256.key
 **/jwtRS256.key.pub
+
+**/yarn.lock
+.husky
