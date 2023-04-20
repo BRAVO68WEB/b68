@@ -43,7 +43,7 @@ export default class CacheClient {
         }
 
         this._nodeClient = new NodeCache()
-        console.log(`Caching Client initialized in '${env}' environment`)
+        console.log(`🍞 Caching Client initialized in '${env}' environment`)
     }
 
     static async set(key: string, value: any) {

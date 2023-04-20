@@ -1,9 +1,13 @@
 import fs from 'fs'
 import { parse as parseFile } from 'envfile'
+import { Issuer } from 'openid-client';
+
+const keyCloakIssuer : Issuer = await Issuer.discover(process.env.KEYCLOAK_AUTH_SERVER_URL!);
+console.log('🔐 Connected to Keycloak');
 
 type IconfigStore = 'development' | 'production'
 
-interface IConfigKeys {
+export interface IConfigKeys {
     PORT: string | number
     NODE_ENV: string
     HASURA_GRAPHQL_ADMIN_SECRET: string
@@ -32,6 +36,13 @@ interface IConfigKeys {
     AWS_ACCESS_KEY_ID: string
     AWS_SECRET_ACCESS_KEY: string
     AWS_REGION: string
+    PUBLIC_KEY: string
+    PRIVATE_KEY: string
+    KEYCLOAK_ISSUER: Issuer
+    KEYCLOAK_CLIENT_ID: string
+    KEYCLOAK_CLIENT_SECRET: string
+    KEYCLOAK_REDIRECT_URI: string
+    KEYCLOAK_AUTH_SERVER_URL: string
 }
 
 export default class ConfigStoreFactory {
@@ -46,9 +57,14 @@ export default class ConfigStoreFactory {
     }
 
     public async getConfigStore() {
+        const publicKEY = fs.readFileSync('./jwtRS256.key', 'utf8');
+		const privateKEY = fs.readFileSync('./jwtRS256.key.pub', 'utf8');
         if (this.configStoreType === 'development') {
             const envContent = await fs.readFileSync(`./.env`, 'utf8')
             const env: Partial<IConfigKeys> = await parseFile(envContent)
+            env.PUBLIC_KEY = publicKEY
+            env.PRIVATE_KEY = privateKEY
+            env.KEYCLOAK_ISSUER = keyCloakIssuer
             return env
         } else {
             let reqEnvContent: any = await fs.readFileSync(
@@ -59,6 +75,9 @@ export default class ConfigStoreFactory {
             reqEnvContent = reqEnvContent.split('\n')
             let missingKeys: string[] = []
             let env: Partial<IConfigKeys> = {}
+            env.PUBLIC_KEY = publicKEY
+            env.PRIVATE_KEY = privateKEY
+            env.KEYCLOAK_ISSUER = keyCloakIssuer
             for (const line of reqEnvContent) {
                 if (!process.env[line]) {
                     missingKeys.push(line)
@@ -67,6 +86,7 @@ export default class ConfigStoreFactory {
             if (missingKeys.length > 0) {
                 throw new Error(`Missing keys: ${missingKeys}`)
             }
+
             return env
         }
     }

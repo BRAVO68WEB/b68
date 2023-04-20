@@ -1,18 +1,18 @@
 import { Router } from 'express'
-import { makeResponse } from '../libs'
+import AuthController from '../controllers/auth.controller'
+import middleware from '../auth/middleware'
 
 const router = Router()
+const authController = new AuthController()
 
-router.get('/', (req, res) => {
-    res.send(makeResponse({ message: 'Hello World auth!' }))
-})
+router.get('/signin', authController.signin)
 
-router.all('/err', async (req, res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/signin/callback', authController.callback)
+
+router.get('/me', middleware, authController.me as any)
+
+router.get('/', function(req, res) {
+    res.render('pages/auth');
+});
 
 export default router

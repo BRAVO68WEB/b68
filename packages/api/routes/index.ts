@@ -30,7 +30,7 @@ const loadRoutes = async (dirPath: string, prefix = '/') => {
                     ''
                 )
                 const modRoute = path.join(prefix, route)
-                console.log('🛰️', 'Loaded', modRoute)
+                console.log('🛰️ ', 'Loaded', modRoute)
 
                 const mod = await import(path.join(baseDir, prefix + f.name))
                 router.use(modRoute, mod.default)
@@ -48,4 +48,13 @@ let baseDir = path.dirname(__filename)
 baseDir = path.resolve(baseDir)
 
 loadRoutes(baseDir)
+
+router.get('/', function(req, res) {
+    res.render('pages/index');
+});
+
+router.get('/favicon.ico', function(req, res) {
+    res.sendFile(path.join(__dirname, '../public', 'favicon.ico'));
+});
+
 export default router

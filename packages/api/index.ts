@@ -5,45 +5,40 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 
 import { hgqlInit } from './helpers'
+import cacheClient from './helpers/cache.factory';
 import routes from './routes'
 import { errorHandler, notFoundHandler } from './libs'
 import pkg from './package.json' assert { type: 'json' }
-import configStore from './configs'
+import configStore, { IConfigKeys } from './configs';
 
 export const app: express.Application = express()
 
-hgqlInit()
-
 console.log('🚀', '@b68/api', 'v' + pkg.version)
 
+hgqlInit()
+cacheClient.init();
+
 const isDev: boolean = process.env.NODE_ENV == 'production'
-console.log(isDev ? '🚀 Production Mode' : '🚀 Development Mode')
+console.log(isDev ? '🚀 Production Mode' : '👷 Development Mode')
 const configs = new configStore(isDev)
-const configKeys: any = await configs.getConfigStore()
+const configKeys: IConfigKeys = await configs.getConfigStore() as IConfigKeys
 
 app.use(cors())
 app.use(helmet())
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))
+app.set('view engine', 'ejs');
 
-app.use('/health', (req, res) => {
-    return res.status(200).json({
-        app: pkg.name,
-        request_ip: req.ip,
-        uptime: process.uptime(),
-        hrtime: process.hrtime(),
-    })
-})
+console.log('☄ ', 'Base Route', '/')
 
-console.log('☄', 'Base Route', '/')
 app.use('/', routes)
 
 app.use(notFoundHandler)
 app.use(errorHandler)
 
-app.listen(process.env.PORT, async () => {
-    console.log(`\nServer running on port ${process.env.PORT}`)
+app.listen(configKeys.PORT, async () => {
+    console.log(`\n🌈 Server running on port ${configKeys.PORT}`)
 })
 
 export { configKeys }
