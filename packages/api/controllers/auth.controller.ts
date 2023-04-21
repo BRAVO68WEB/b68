@@ -1,12 +1,11 @@
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { makeResponse } from '../libs'
-import check from '../auth/check'
-import verify from '../auth/verify'
 import { ModRequest } from '../types'
+import { callback, introspect, refresh, signon, revoke } from '../auth/index'
 
 export default class AuthController {
     public signin = (req: Request, res: Response) => {
-        const { authurl } = check()
+        const { authurl } = signon()
         res.redirect(authurl)
     }
 
@@ -15,10 +14,30 @@ export default class AuthController {
             session_state: string
             code: string
         }
-        res.send(makeResponse(await verify(session_state, code)))
+        res.send(makeResponse(await callback(session_state, code)))
     }
 
     public me = (req: ModRequest, res: Response) => {
-        res.send(makeResponse(req.user))
+        res.send(makeResponse(req.user.userData))
+    }
+
+    public logout = async (req: Request, res: Response, next: NextFunction) => {
+        res.send(makeResponse(await revoke(req, res, next)))
+    }
+
+    public refresh = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
+        res.send(makeResponse(await refresh(req, res, next)))
+    }
+
+    public introspect = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
+        res.send(makeResponse(await introspect(req, res, next)))
     }
 }
