@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import AuthController from '../controllers/auth.controller'
-import { middleware } from '../auth'
+import { middleware, keyware } from '../auth'
 
 const router = Router()
 const authController = new AuthController()
@@ -13,9 +13,19 @@ router.get('/me', middleware, authController.me as any)
 
 router.get('/logout', middleware, authController.logout as any)
 
-router.get('/refresh', middleware, authController.refresh as any)
+router.post('/refresh', middleware, authController.refresh as any)
 
 router.get('/introspect', middleware, authController.introspect as any)
+
+router.put('/key', middleware, authController.createKey as any)
+
+router.get('/key', middleware, authController.fetchKey as any)
+
+router.delete('/key', middleware, authController.deleteKey as any)
+
+router.post('/key/verify', authController.validateKey as any)
+
+router.get('/key/verify', keyware, authController.validateKey as any)
 
 router.get('/', function (req, res) {
     res.render('pages/auth')

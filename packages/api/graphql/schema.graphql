@@ -1,0 +1,487 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""whether this query should be cached (Hasura Cloud only)"""
+directive @cached(
+  """measured in seconds"""
+  ttl: Int! = 60
+
+  """refresh the cache entry"""
+  refresh: Boolean! = false
+) on QUERY
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+
+  """does the column match the given case-insensitive pattern"""
+  _ilike: String
+  _in: [String!]
+
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+
+  """does the column match the given pattern"""
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+
+  """does the column NOT match the given case-insensitive pattern"""
+  _nilike: String
+  _nin: [String!]
+
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+
+  """does the column NOT match the given pattern"""
+  _nlike: String
+
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+
+  """does the column NOT match the given SQL regular expression"""
+  _nsimilar: String
+
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+
+  """does the column match the given SQL regular expression"""
+  _similar: String
+}
+
+"""
+columns and relationships of "apikey"
+"""
+type apikey {
+  api_key: String!
+  created_at: timestamptz!
+  updated_at: timestamptz!
+  user_id: uuid!
+}
+
+"""
+aggregated selection of "apikey"
+"""
+type apikey_aggregate {
+  aggregate: apikey_aggregate_fields
+  nodes: [apikey!]!
+}
+
+"""
+aggregate fields of "apikey"
+"""
+type apikey_aggregate_fields {
+  count(columns: [apikey_select_column!], distinct: Boolean): Int!
+  max: apikey_max_fields
+  min: apikey_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "apikey". All fields are combined with a logical 'AND'.
+"""
+input apikey_bool_exp {
+  _and: [apikey_bool_exp!]
+  _not: apikey_bool_exp
+  _or: [apikey_bool_exp!]
+  api_key: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  user_id: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "apikey"
+"""
+enum apikey_constraint {
+  """
+  unique or primary key constraint on columns "api_key"
+  """
+  apikey_api_key_key
+
+  """
+  unique or primary key constraint on columns "user_id"
+  """
+  apikey_pkey
+}
+
+"""
+input type for inserting data into table "apikey"
+"""
+input apikey_insert_input {
+  api_key: String
+  created_at: timestamptz
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""aggregate max on columns"""
+type apikey_max_fields {
+  api_key: String
+  created_at: timestamptz
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""aggregate min on columns"""
+type apikey_min_fields {
+  api_key: String
+  created_at: timestamptz
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""
+response of any mutation on the table "apikey"
+"""
+type apikey_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [apikey!]!
+}
+
+"""
+on_conflict condition type for table "apikey"
+"""
+input apikey_on_conflict {
+  constraint: apikey_constraint!
+  update_columns: [apikey_update_column!]! = []
+  where: apikey_bool_exp
+}
+
+"""Ordering options when selecting data from "apikey"."""
+input apikey_order_by {
+  api_key: order_by
+  created_at: order_by
+  updated_at: order_by
+  user_id: order_by
+}
+
+"""primary key columns input for table: apikey"""
+input apikey_pk_columns_input {
+  user_id: uuid!
+}
+
+"""
+select columns of table "apikey"
+"""
+enum apikey_select_column {
+  """column name"""
+  api_key
+
+  """column name"""
+  created_at
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  user_id
+}
+
+"""
+input type for updating data in table "apikey"
+"""
+input apikey_set_input {
+  api_key: String
+  created_at: timestamptz
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""
+Streaming cursor of the table "apikey"
+"""
+input apikey_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: apikey_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input apikey_stream_cursor_value_input {
+  api_key: String
+  created_at: timestamptz
+  updated_at: timestamptz
+  user_id: uuid
+}
+
+"""
+update columns of table "apikey"
+"""
+enum apikey_update_column {
+  """column name"""
+  api_key
+
+  """column name"""
+  created_at
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  user_id
+}
+
+input apikey_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: apikey_set_input
+
+  """filter the rows which have to be updated"""
+  where: apikey_bool_exp!
+}
+
+"""ordering argument of a cursor"""
+enum cursor_ordering {
+  """ascending ordering of the cursor"""
+  ASC
+
+  """descending ordering of the cursor"""
+  DESC
+}
+
+"""mutation root"""
+type mutation_root {
+  """
+  delete data from the table: "apikey"
+  """
+  delete_apikey(
+    """filter the rows which have to be deleted"""
+    where: apikey_bool_exp!
+  ): apikey_mutation_response
+
+  """
+  delete single row from the table: "apikey"
+  """
+  delete_apikey_by_pk(user_id: uuid!): apikey
+
+  """
+  insert data into the table: "apikey"
+  """
+  insert_apikey(
+    """the rows to be inserted"""
+    objects: [apikey_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: apikey_on_conflict
+  ): apikey_mutation_response
+
+  """
+  insert a single row into the table: "apikey"
+  """
+  insert_apikey_one(
+    """the row to be inserted"""
+    object: apikey_insert_input!
+
+    """upsert condition"""
+    on_conflict: apikey_on_conflict
+  ): apikey
+
+  """
+  update data of the table: "apikey"
+  """
+  update_apikey(
+    """sets the columns of the filtered rows to the given values"""
+    _set: apikey_set_input
+
+    """filter the rows which have to be updated"""
+    where: apikey_bool_exp!
+  ): apikey_mutation_response
+
+  """
+  update single row of the table: "apikey"
+  """
+  update_apikey_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: apikey_set_input
+    pk_columns: apikey_pk_columns_input!
+  ): apikey
+
+  """
+  update multiples rows of table: "apikey"
+  """
+  update_apikey_many(
+    """updates to execute, in order"""
+    updates: [apikey_updates!]!
+  ): [apikey_mutation_response]
+}
+
+"""column ordering options"""
+enum order_by {
+  """in ascending order, nulls last"""
+  asc
+
+  """in ascending order, nulls first"""
+  asc_nulls_first
+
+  """in ascending order, nulls last"""
+  asc_nulls_last
+
+  """in descending order, nulls first"""
+  desc
+
+  """in descending order, nulls first"""
+  desc_nulls_first
+
+  """in descending order, nulls last"""
+  desc_nulls_last
+}
+
+type query_root {
+  """
+  fetch data from the table: "apikey"
+  """
+  apikey(
+    """distinct select on columns"""
+    distinct_on: [apikey_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [apikey_order_by!]
+
+    """filter the rows returned"""
+    where: apikey_bool_exp
+  ): [apikey!]!
+
+  """
+  fetch aggregated fields from the table: "apikey"
+  """
+  apikey_aggregate(
+    """distinct select on columns"""
+    distinct_on: [apikey_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [apikey_order_by!]
+
+    """filter the rows returned"""
+    where: apikey_bool_exp
+  ): apikey_aggregate!
+
+  """fetch data from the table: "apikey" using primary key columns"""
+  apikey_by_pk(user_id: uuid!): apikey
+}
+
+type subscription_root {
+  """
+  fetch data from the table: "apikey"
+  """
+  apikey(
+    """distinct select on columns"""
+    distinct_on: [apikey_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [apikey_order_by!]
+
+    """filter the rows returned"""
+    where: apikey_bool_exp
+  ): [apikey!]!
+
+  """
+  fetch aggregated fields from the table: "apikey"
+  """
+  apikey_aggregate(
+    """distinct select on columns"""
+    distinct_on: [apikey_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [apikey_order_by!]
+
+    """filter the rows returned"""
+    where: apikey_bool_exp
+  ): apikey_aggregate!
+
+  """fetch data from the table: "apikey" using primary key columns"""
+  apikey_by_pk(user_id: uuid!): apikey
+
+  """
+  fetch data from the table in a streaming manner: "apikey"
+  """
+  apikey_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [apikey_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: apikey_bool_exp
+  ): [apikey!]!
+}
+
+scalar timestamptz
+
+"""
+Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+scalar uuid
+
+"""
+Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
+"""
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}
+

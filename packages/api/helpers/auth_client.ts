@@ -4,7 +4,10 @@ const { KEYCLOAK_ISSUER } = configKeys
 
 const authConfig = {
     client_id: configKeys.KEYCLOAK_CLIENT_ID,
-    'auth-server-url': configKeys.KEYCLOAK_AUTH_SERVER_URL,
+    'auth-server-url':
+        configKeys.KEYCLOAK_AUTH_SERVER_URL +
+        '/realms/' +
+        configKeys.KEYCLOAK_REALM,
     'ssl-required': 'all',
     resource: configKeys.KEYCLOAK_CLIENT_ID,
     credentials: {

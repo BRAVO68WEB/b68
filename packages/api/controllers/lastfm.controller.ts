@@ -6,7 +6,6 @@ export default class LastFMController extends LastfmService {
     public fetchUser = async (req: Request, res: Response) => {
         try {
             const data = await this.user()
-            console.log(data)
             res.send(makeResponse(data))
         } catch (err: any) {
             res.send(makeResponse(err.message, {}, 'Failed', true))
