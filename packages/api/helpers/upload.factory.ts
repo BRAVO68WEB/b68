@@ -2,136 +2,81 @@ import { S3Client } from '@aws-sdk/client-s3'
 import multer from 'multer'
 import multerS3 from 'multer-s3'
 import path from 'path'
-import { nanoid } from 'napi-nanoid'
-import axios from 'axios'
-import FormData from 'form-data'
-import fs from 'fs'
-
-type UploadEnvironment = 's3' | 'safe' | 'local'
-type napiNanoId = () => string
-
-export default class LocalUploadFactory {
-    private _upload: multer.Multer
-
-    constructor() {
-        this._upload = multer({
-            storage: multer.diskStorage({
-                destination: (req, file, cb) => {
-                    cb(null, path.join(__dirname, '..', 'uploads'))
-                },
-                filename: (req, file, cb) => {
-                    cb(null, nanoid() + path.extname(file.originalname))
-                },
-            }),
-        })
-    }
-
-    get upload() {
-        return this._upload
-    }
+import napiNanoId from 'napi-nanoid'
+import { configKeys } from '..'
+interface UploadFactoryOptions {
+    region: string
+    bucket: string
+    accessKey: string
+    secretKey: string
 }
-
-export class S3UploadFactory {
-    private _upload: multer.Multer
-
-    constructor(client: S3Client) {
-        this._upload = multer({
-            storage: multerS3({
-                s3: client,
-                bucket: process.env.AWS_BUCKET!,
-                acl: 'public-read',
-                key: (req, file, cb) => {
-                    cb(null, nanoid() + path.extname(file.originalname))
-                },
-            }),
-        })
-    }
-
-    get upload() {
-        return this._upload
-    }
+interface UploaderConfig {
+    folder: string
+    mimeFilters: string[]
 }
-
-export class SafeUploadFactory {
-    // Safe is a http file upload service at https://safe.b68dev.xyz
-    // Upload API at https://safe.b68dev.xyz/api/upload
-
-    private _upload: multer.Multer
-
-    constructor() {
-        this._upload = multer({
-            storage: multer.memoryStorage(),
-        })
-        this._upload.single('file')
-    }
-
-    get upload() {
-        return this._upload
-    }
-
-    async uploadFile(file: any) {
-        const form = new FormData()
-        form.append('files[]', file.buffer, { filename: file.originalname })
-        const { data } = await axios.post(
-            'https://safe.b68dev.xyz/api/upload',
-            form,
-            {
-                headers: {
-                    token: process.env.SAFE_TOKEN!,
-                    ...form.getHeaders(),
-                },
-            }
-        )
-        return data
-    }
-}
-
 export class UploadFactory {
-    private static _clientMode: UploadEnvironment
-    private static _s3Client: S3Client
-    private static _localClient: LocalUploadFactory
-    private static _safeClient: SafeUploadFactory
+    private options: UploadFactoryOptions & Partial<UploaderConfig>
+    private s3Client: S3Client
 
-    static get client() {
-        return this._clientMode === 's3'
-            ? this._s3Client
-            : this._clientMode === 'safe'
-            ? this._safeClient
-            : this._localClient
-    }
-
-    static get env() {
-        return this._clientMode
-    }
-
-    static init(forceEnv?: UploadEnvironment) {
-        const env =
-            forceEnv ||
-            process.env.UPLOAD_ENV ||
-            process.env.NODE_ENV ||
-            'local'
-
-        if (!['s3', 'local', 'safe'].includes(env))
-            throw new Error(
-                "Invalid Upload Environment, expected - ['s3', 'local', 'safe'], received - " +
-                    env
-            )
-
-        this._clientMode = env as UploadEnvironment
-
-        if (env === 'safe') {
-            this._safeClient = new SafeUploadFactory()
-        } else if (env === 's3') {
-            this._s3Client = new S3Client({
-                region: process.env.AWS_REGION,
-                credentials: {
-                    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-                    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-                },
-            })
-        } else {
-            this._localClient = new LocalUploadFactory()
+    constructor(options?: Partial<UploadFactoryOptions>) {
+        this.options = {
+            bucket: options?.bucket || configKeys.S3_BUCKET_NAME || '',
+            region: options?.region || configKeys.S3_BUCKET_REGION || '',
+            accessKey: options?.accessKey || configKeys.S3_CLIENT_ID || '',
+            secretKey: options?.secretKey || configKeys.S3_CLIENT_SECRET || '',
         }
-        console.log(`Upload Client initialized in '${env}' environment`)
+
+        this.s3Client = new S3Client({
+            region: this.options.region,
+            credentials: {
+                accessKeyId: this.options.accessKey,
+                secretAccessKey: this.options.secretKey,
+            },
+        })
+    }
+
+    public get serviceName(): string {
+        return 'aws:' + this.options.bucket
+    }
+
+    public getUploader(
+        config?: Partial<UploadFactoryOptions & UploaderConfig>
+    ) {
+        const finalOptions = {
+            ...this.options,
+            ...(config || {}),
+        }
+
+        return multer({
+            fileFilter(_req, file, cb) {
+                const res = finalOptions.mimeFilters
+                    ? finalOptions.mimeFilters.includes(file.mimetype)
+                    : true
+                cb(null, res)
+            },
+            storage: multerS3({
+                s3: this.s3Client,
+                bucket: this.options.bucket,
+                acl: 'public-read',
+                contentType: multerS3.AUTO_CONTENT_TYPE,
+                metadata: function (_req, file, cb) {
+                    const meta = {
+                        fieldName: file.fieldname,
+                        fileName: file.originalname,
+                        uploadOn: new Date().toISOString(),
+                    }
+                    cb(null, meta)
+                },
+                key: function (_req, file, cb) {
+                    const key: string[] = []
+                    if (finalOptions.folder) key.push(finalOptions.folder)
+                    const value = napiNanoId.nanoid()
+                    const ext = path.extname(file.originalname)
+                    key.push(value + ext)
+
+                    cb(null, key.join('/'))
+                },
+            }),
+        })
     }
 }
