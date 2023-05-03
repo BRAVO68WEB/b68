@@ -135,3 +135,5 @@ dist
 
 **/yarn.lock
 .husky
+
+**/GeoLite2-City*

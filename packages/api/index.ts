@@ -29,6 +29,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))
 app.set('view engine', 'ejs')
+app.set('trust proxy', true)
 
 console.log('☄ ', 'Base Route', '/')
 
