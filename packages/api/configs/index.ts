@@ -48,6 +48,19 @@ export interface IConfigKeys {
     KEYCLOAK_REDIRECT_URI: string
     KEYCLOAK_AUTH_SERVER_URL: string
     KEYCLOAK_REALM: string
+    R2_CLIENT_ID: string
+    R2_CLIENT_SECRET: string
+    R2_BUCKET_NAME: string
+    R2_BUCKET_REGION: string
+    R2_BUCKET_ENDPOINT: string
+    R2_BUCKET_URL: string
+    R2_BUCKET_FOLDER: string
+    DISCORD_BOT_TOKEN: string
+    DISCORD_BOT_CLIENT_ID: number
+    DISCORD_BOT_CLIENT_SECRET: string
+    DISCORD_SERVER_ID: number
+    DISCORD_WEBHOOK_URL: string
+    DISCORD_SELF_ID: number
 }
 
 export default class ConfigStoreFactory {

@@ -10,6 +10,7 @@ import routes from './routes'
 import { errorHandler, notFoundHandler } from './libs'
 import pkg from './package.json' assert { type: 'json' }
 import configStore, { IConfigKeys } from './configs'
+import discordBotConnect from './helpers/discord_bot_client'
 
 export const app: express.Application = express()
 
@@ -22,6 +23,8 @@ const isDev: boolean = process.env.NODE_ENV == 'production'
 console.log(isDev ? '🚀 Production Mode' : '👷 Development Mode')
 const configs = new configStore(isDev)
 const configKeys: IConfigKeys = (await configs.getConfigStore()) as IConfigKeys
+
+discordBotConnect()
 
 app.use(cors())
 app.use(helmet())

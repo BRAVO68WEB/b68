@@ -10,4 +10,5 @@ export interface PaginationType {
 
 export interface ModRequest extends Request {
     user: any
+    file: any
 }

@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { makeResponse } from '../libs'
 
 export default class DiscordController extends DiscordService {
-    public getProfile = async (req: Request, res: Response) => {
+    public getActivity = async (req: Request, res: Response) => {
         try {
             const data = await this.activity()
             res.send(makeResponse(data))
@@ -18,6 +18,24 @@ export default class DiscordController extends DiscordService {
             res.setHeader('content-type', 'image/svg+xml; charset=utf-8').send(
                 data
             )
+        } catch (error: any) {
+            res.send(makeResponse(error.message, {}, 'Failed', true))
+        }
+    }
+
+    public getProfile = async (req: Request, res: Response) => {
+        try {
+            const data = await this.profile()
+            res.send(makeResponse(data))
+        } catch (error: any) {
+            res.send(makeResponse(error.message, {}, 'Failed', true))
+        }
+    }
+
+    public getPresence = async (req: Request, res: Response) => {
+        try {
+            const data = await this.presence()
+            res.send(makeResponse(data))
         } catch (error: any) {
             res.send(makeResponse(error.message, {}, 'Failed', true))
         }
