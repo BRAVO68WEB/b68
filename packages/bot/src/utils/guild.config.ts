@@ -1,4 +1,4 @@
-import { GuildConfig } from '../src/sturctures/database'
+import { GuildConfig } from '../sturctures/database'
 
 const MYGuildConfig: GuildConfig = {
     prefix: 'd!',

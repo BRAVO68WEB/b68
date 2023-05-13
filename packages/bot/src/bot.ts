@@ -1,6 +1,6 @@
 import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js'
 
-// import './http/server';
+import './server'
 
 import { loadSlashCommand, loadTextCommand } from './loaders/command'
 import { loadDiscordEvent } from './loaders/event'

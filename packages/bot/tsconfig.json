@@ -30,8 +30,10 @@
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "target": "esnext"
+        "target": "esnext",
+        "outDir": "./dist"
     },
     "display": "Default tsconfig.json",
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules"],
+    "include": ["./**/*.ts", "./**/*.tsx", "./**/*.json", "./**/*.js"]
 }

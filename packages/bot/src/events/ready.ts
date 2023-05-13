@@ -21,6 +21,6 @@ export const event: DiscordEvent = {
             })
         }, 15 * 1000)
 
-        console.log('Bot is in ready status!')
+        console.log('🤖 Bot is in ready status!')
     },
 }

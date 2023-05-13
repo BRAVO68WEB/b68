@@ -9,7 +9,7 @@ import { getCommandHelpInfo, resembleCommandCheck } from '../utils/cmds'
 import { isDev } from '../utils/constants'
 import { parseMsToVisibleText } from '../utils/formatters'
 import { callbackEmbed } from '../utils/messages'
-import MYGuildConfig from '../../config/guild.config'
+import MYGuildConfig from '../utils/guild.config'
 
 async function reject(message: Message, usage: string, missing: string) {
     const postMessage = await message.reply({
