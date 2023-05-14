@@ -1,10 +1,10 @@
 import fastify from 'fastify'
-import client from '../bot'
+import { bot } from '../index'
 
 const server = fastify()
 
 server.get('/', () => {
-    return client.user?.username + ' is ready !!'
+    return bot.client.user?.username + ' is ready !!'
 })
 
 await server.listen({

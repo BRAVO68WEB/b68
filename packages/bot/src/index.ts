@@ -1,9 +1,10 @@
 import 'dotenv/config'
-
 import chalk from 'chalk'
+import { Client, GatewayIntentBits, Partials } from 'discord.js'
 
 import './validate-env'
 
+import { Bot } from './bot'
 import { isDev } from './utils/constants'
 
 // Check NODE Version
@@ -31,4 +32,23 @@ if (isDev) {
     process.on('unhandledRejection', console.error)
 }
 
-import('./bot')
+export const bot = new Bot(
+    new Client({
+        intents: [
+            GatewayIntentBits.Guilds,
+            GatewayIntentBits.GuildMembers,
+            GatewayIntentBits.GuildMessages,
+            GatewayIntentBits.DirectMessages,
+            GatewayIntentBits.MessageContent,
+            GatewayIntentBits.GuildVoiceStates,
+            GatewayIntentBits.GuildMessageReactions,
+        ],
+        allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
+        partials: [
+            Partials.User,
+            Partials.Channel,
+            Partials.Message,
+            Partials.GuildMember,
+        ],
+    })
+)

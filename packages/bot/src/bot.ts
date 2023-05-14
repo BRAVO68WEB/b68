@@ -1,4 +1,9 @@
-import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js'
+import {
+    ApplicationCommandDataResolvable,
+    Client,
+    Collection,
+    Snowflake,
+} from 'discord.js'
 
 import './server'
 
@@ -6,40 +11,36 @@ import { loadSlashCommand, loadTextCommand } from './loaders/command'
 import { loadDiscordEvent } from './loaders/event'
 import type { SlashCommand, TextCommand } from './sturctures/command'
 import { hgqlInit } from './utils/database'
+import { MusicQueue } from './utils/musicQueue'
+import { Command } from './interfaces/Command'
 
-const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.DirectMessages,
-        GatewayIntentBits.MessageContent,
-    ],
-    allowedMentions: { parse: ['users', 'roles'], repliedUser: false },
-    partials: [
-        Partials.User,
-        Partials.Channel,
-        Partials.Message,
-        Partials.GuildMember,
-    ],
-})
+export class Bot {
+    public prefix = 'h!'
+    public commands = new Collection<string, Command>()
+    public slashCommands = new Array<ApplicationCommandDataResolvable>()
+    public slashCommandsMap = new Collection<string, Command>()
+    public cooldowns = new Collection<string, Collection<Snowflake, number>>()
+    public queues = new Collection<Snowflake, MusicQueue>()
 
-client.commands = new Collection()
-client.commandsCatagories = new Collection()
-client.aliases = new Collection()
-client.slashcommands = new Collection()
+    public constructor(public client: Client) {
+        this.client.commands = new Collection()
+        this.client.commandsCatagories = new Collection()
+        this.client.aliases = new Collection()
+        this.client.slashcommands = new Collection()
 
-await loadDiscordEvent(client)
-await loadTextCommand(client)
+        loadDiscordEvent(this.client)
+        loadTextCommand(this.client)
 
-await hgqlInit()
+        hgqlInit()
 
-await client.login(process.env.TOKEN)
+        this.client.login(process.env.TOKEN)
 
-await loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN)
-
-export default client
-
+        this.client.on('ready', () => {
+            console.log(`🟢 Logged in as ${client.user?.tag}!`)
+            loadSlashCommand(client, process.env.CLIENT_ID, process.env.TOKEN)
+        })
+    }
+}
 // declare types.
 declare module 'discord.js' {
     export interface Client {
@@ -47,5 +48,6 @@ declare module 'discord.js' {
         commands: Collection<string, TextCommand>
         slashcommands: Collection<string, SlashCommand>
         commandsCatagories: Collection<string, string[]>
+        queues: Collection<Snowflake, MusicQueue>
     }
 }

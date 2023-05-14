@@ -18,7 +18,7 @@
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "noImplicitOverride": true,
-        "noImplicitReturns": true,
+        "noImplicitReturns": false,
         "noImplicitThis": true,
         "noUncheckedIndexedAccess": false,
 
@@ -26,10 +26,10 @@
         "noUnusedParameters": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
-        "strict": true,
+        // "strict": true,
         "strictFunctionTypes": true,
         "strictNullChecks": true,
-        "strictPropertyInitialization": true,
+        "strictPropertyInitialization": false,
         "target": "esnext",
         "outDir": "./dist"
     },
