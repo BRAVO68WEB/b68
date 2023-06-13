@@ -63,7 +63,7 @@ The webhook package contains the webhook server for the B68 Ecosystem. It allows
 
 ### @packages/config-store
 
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fwh%2Fpackage.json&logo=npm&style=for-the-badge)
+![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fwh%2Fpackage.json&logo=go&style=for-the-badge)
 
 The config-store package contains the configuration store for the B68 Ecosystem. It allows me to store and retrieve configuration data for various services in the ecosystem.
 
