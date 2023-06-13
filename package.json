@@ -4,7 +4,7 @@
     "description": "B68 Module",
     "repository": "git@github.com:b68dev/b68.git",
     "author": "Jyotirmoy Bandyopadhyaya [Bravo68] <jbandyopadhayaya@gmail.com>",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "private": true,
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^5.54.1",
