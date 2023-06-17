@@ -1,0 +1,15 @@
+name: Build Checks for CLI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+      - run: cd packages/config-store && go mod tidy && go build -o config-store
+      - run: du -sh
