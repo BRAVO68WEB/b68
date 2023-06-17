@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "go"
+    directory: "/packages/config-store"
+    schedule:
+      interval: "weekly"
