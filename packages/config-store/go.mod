@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/gofiber/fiber/v2 v2.46.0
-	github.com/joho/godotenv v1.4.0
+	github.com/joho/godotenv v1.5.1
 )
 
 require (
