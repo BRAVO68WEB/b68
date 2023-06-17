@@ -43,12 +43,6 @@ The API package contains the API server for the B68 Ecosystem. It allows users t
 
 The CLI package includes the command-line interface (CLI) for interacting with the B68 Ecosystem. It allows users to interact with the various services in the ecosystem via a command-line interface.
 
-### @packages/dash (WIP)
-
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/shx?filename=packages%2Fdashboard%2Fpackage.json&logo=npm&style=for-the-badge)
-
-The dashboard package contains the web dashboard for the B68 Ecosystem. It allows users to interact with the various services in the ecosystem via a web dashboard.
-
 ### @packages/bot
 
 ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fbot%2Fpackage.json&logo=npm&style=for-the-badge)
