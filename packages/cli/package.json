@@ -34,7 +34,7 @@
         "configstore": "^6.0.0",
         "moment": "^2.29.3",
         "node-fetch": "^3.2.3",
-        "query-string": "^7.1.1",
+        "query-string": "^8.1.0",
         "url-parse": "^1.5.10"
     }
 }
