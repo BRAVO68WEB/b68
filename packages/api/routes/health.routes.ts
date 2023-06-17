@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 const router = Router()
 
-router.use('/health', (req, res) => {
+router.use('/', (req, res) => {
     return res.status(200).json({
         status: 'OK',
         app: 'B68 API',

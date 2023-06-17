@@ -8,7 +8,7 @@ export class CustomError extends Error {
         this.data = args.data
     }
 
-    toString() {
+    override toString() {
         return {
             message: this.message,
             statusCode: this.statusCode,

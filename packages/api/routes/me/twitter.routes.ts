@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import { makeResponse } from '../../libs'
 import TwitterController from '../../controllers/twitter.controller'
 
 const router = Router()

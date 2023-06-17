@@ -8,7 +8,7 @@ export const serviceAccount = new ServiceAccount()
 
 export const keyware = async (
     req: ModRequest | any,
-    res: Response,
+    _res: Response,
     next: NextFunction
 ) => {
     const authClient = new APIKey()

@@ -7,7 +7,7 @@ const mailConfig =
     process.env.NODE_ENV === 'production'
         ? MailerConfig.production
         : MailerConfig.development
-const FROM_EMAIL = 'B68 API <api@b68.dev>'
+// const FROM_EMAIL = 'B68 API <api@b68.dev>'
 
 const transporter = nodemailer.createTransport(mailConfig)
 

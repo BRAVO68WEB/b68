@@ -49,11 +49,11 @@ baseDir = path.resolve(baseDir)
 
 loadRoutes(baseDir)
 
-router.get('/', function (req, res) {
+router.get('/', function (_req, res) {
     res.render('pages/index')
 })
 
-router.get('/favicon.ico', function (req, res) {
+router.get('/favicon.ico', function (_req, res) {
     res.sendFile(path.join(__dirname, '../public', 'favicon.ico'))
 })
 

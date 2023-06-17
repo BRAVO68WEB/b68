@@ -27,7 +27,7 @@ router.post('/key/verify', authController.validateKey as any)
 
 router.get('/key/verify', keyware, authController.validateKey as any)
 
-router.get('/', function (req, res) {
+router.get('/', function (_req, res) {
     res.render('pages/auth')
 })
 

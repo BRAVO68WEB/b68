@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { makeResponse } from '../libs'
 
 export default class Wakatime extends WakatimeService {
-    public profile = async (req: Request, res: Response) => {
+    public profile = async (_req: Request, res: Response) => {
         try {
             const data = await this.getWakatimeStats()
             res.send(makeResponse(data))
@@ -12,7 +12,7 @@ export default class Wakatime extends WakatimeService {
         }
     }
 
-    public last7DaysLanguages = async (req: Request, res: Response) => {
+    public last7DaysLanguages = async (_req: Request, res: Response) => {
         try {
             const data = await this.getWakatimeLanguageUsageInLast7Days()
             res.send(makeResponse(data))
@@ -21,7 +21,7 @@ export default class Wakatime extends WakatimeService {
         }
     }
 
-    public last7DaysCode = async (req: Request, res: Response) => {
+    public last7DaysCode = async (_req: Request, res: Response) => {
         try {
             const data = await this.getWakatimeCodeStatsLast7Days()
             res.send(makeResponse(data))
@@ -30,7 +30,7 @@ export default class Wakatime extends WakatimeService {
         }
     }
 
-    public allTimeCode = async (req: Request, res: Response) => {
+    public allTimeCode = async (_req: Request, res: Response) => {
         try {
             const data = await this.getWakatimeCodeStatesAllTime()
             res.send(makeResponse(data))

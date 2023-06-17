@@ -1,14 +1,6 @@
 import { REST } from '@discordjs/rest'
-import {
-    WebSocketManager,
-    WebSocketShardStatus,
-    WebSocketShardEvents,
-} from '@discordjs/ws'
-import {
-    GatewayDispatchEvents,
-    GatewayIntentBits,
-    Client,
-} from '@discordjs/core'
+import { WebSocketManager } from '@discordjs/ws'
+import { GatewayIntentBits, Client } from '@discordjs/core'
 import { configKeys } from '..'
 
 export default class DiscordBotClient {
