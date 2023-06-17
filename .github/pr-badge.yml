@@ -98,18 +98,6 @@
   color: '#dddd00'
   
 # Checks if the required sections are missing
-- label: ⚠️Missing
-  message: Category
-  color: '#f25265'
-  when: $payload.pull_request.body.includes('Category') === false
-- label: ⚠️Missing
-  message: Overview
-  color: '#f25265'
-  when: $payload.pull_request.body.includes('Overview') === false
-- label: ⚠️Missing
-  message: Quality Checklist
-  color: '#f25265'
-  when: $payload.pull_request.body.includes('Code Quality Checklist') === false
 - label: ⚠️Description
   message: Incomplete
   color: '#f25265'
