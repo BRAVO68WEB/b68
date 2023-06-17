@@ -1,0 +1,39 @@
+api:
+- packages/api/**/*
+
+cli:
+- packages/cli/**/*
+
+dashboard:
+- packages/dash/**/*
+
+discord:
+- packages/bot/**/*
+
+config-store:
+- packages/config-store/**/*
+
+app:
+- packages/b68-app/**/*
+
+github-actions:
+- .github/workflows/*
+
+github-meta:
+- .github/**/*
+
+dependencies:
+- package.json
+- yarn.lock
+- packages/*/package.json
+- packages/*/go.mod
+
+go:
+- packages/config-store/**/*
+
+node:
+- packages/api/**/*
+- packages/cli/**/*
+- packages/dash/**/*
+- packages/bot/**/*
+- packages/b68-app/**/*
