@@ -1,5 +1,4 @@
-import axios from '../helpers/axios_client'
-import { v1, v2, auth, tools } from 'osu-api-extended'
+import { v2, auth } from 'osu-api-extended'
 import { configKeys } from '../'
 
 const config = configKeys

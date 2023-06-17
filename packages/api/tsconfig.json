@@ -13,12 +13,14 @@
         "experimentalDecorators": true,
         "declaration": true,
         "sourceMap": false,
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "noImplicitReturns": false
     },
     "exclude": ["./node_modules/**/*", "./build/**/*"],
     "include": ["./**/*.ts", "./**/*.tsx", "./**/*.json", "./**/*.js"],
     "ts-node": {
         "swc": true
     },
-    "files": ["types/index.d.ts"]
+    "files": ["types/index.d.ts"],
+    "extends": "@bravo68web/tsconfig/base.json"
 }

@@ -3,11 +3,11 @@ import { makeResponse } from '../../libs'
 
 const router = Router()
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
     res.send(makeResponse({ message: 'Hello World!' }))
 })
 
-router.all('/err', async (req, res, next) => {
+router.all('/err', async (_req, _res, next) => {
     try {
         throw new Error('This is an error')
     } catch (err) {

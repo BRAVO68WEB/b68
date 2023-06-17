@@ -4,9 +4,6 @@ api:
 cli:
 - packages/cli/**/*
 
-dashboard:
-- packages/dash/**/*
-
 discord:
 - packages/bot/**/*
 
@@ -34,6 +31,5 @@ go:
 node:
 - packages/api/**/*
 - packages/cli/**/*
-- packages/dash/**/*
 - packages/bot/**/*
 - packages/b68-app/**/*

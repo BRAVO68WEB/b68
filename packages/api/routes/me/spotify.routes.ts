@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import { makeResponse } from '../../libs'
 import SpotifyController from '../../controllers/spotify.controller'
 
 const router = Router()

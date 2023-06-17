@@ -11,7 +11,7 @@ import {
 } from '../auth/index'
 
 export default class AuthController extends APIKey {
-    public signin = (req: Request, res: Response) => {
+    public signin = (_req: Request, res: Response) => {
         const { authurl } = signon()
         res.redirect(authurl)
     }

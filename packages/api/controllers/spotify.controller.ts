@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { makeResponse } from '../libs'
 
 export default class SpotifyController extends SpotifyService {
-    public login = async (req: Request, res: Response) => {
+    public login = async (_req: Request, res: Response) => {
         const data = await this.loginAuth()
         res.redirect(data)
     }
@@ -13,7 +13,7 @@ export default class SpotifyController extends SpotifyService {
         res.send(data)
     }
 
-    public fetchSpotifyTopSongs = async (req: Request, res: Response) => {
+    public fetchSpotifyTopSongs = async (_req: Request, res: Response) => {
         try {
             const data = await this.getSpotifyTopSongs()
             res.send(makeResponse(data))

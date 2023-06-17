@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { makeResponse } from '../libs'
 
 export default class DiscordController extends DiscordService {
-    public getActivity = async (req: Request, res: Response) => {
+    public getActivity = async (_req: Request, res: Response) => {
         try {
             const data = await this.activity()
             res.send(makeResponse(data))
@@ -12,7 +12,7 @@ export default class DiscordController extends DiscordService {
         }
     }
 
-    public getBanner = async (req: Request, res: Response) => {
+    public getBanner = async (_req: Request, res: Response) => {
         try {
             const data = await this.banner()
             res.setHeader('content-type', 'image/svg+xml; charset=utf-8').send(
@@ -23,7 +23,7 @@ export default class DiscordController extends DiscordService {
         }
     }
 
-    public getProfile = async (req: Request, res: Response) => {
+    public getProfile = async (_req: Request, res: Response) => {
         try {
             const data = await this.profile()
             res.send(makeResponse(data))
@@ -32,7 +32,7 @@ export default class DiscordController extends DiscordService {
         }
     }
 
-    public getPresence = async (req: Request, res: Response) => {
+    public getPresence = async (_req: Request, res: Response) => {
         try {
             const data = await this.presence()
             res.send(makeResponse(data))

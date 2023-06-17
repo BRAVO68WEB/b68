@@ -6,14 +6,12 @@ type IUploaderServerType = 's3' | 'r2' | 'safe'
 export default class UploaderService {
     private static _s3Client
     private static _s3Opts
-    private static _clientType
 
     constructor(bucket, clientType: IUploaderServerType = 's3') {
         const options = {
             bucket,
         }
         UploaderService._s3Opts = options
-        UploaderService._clientType = clientType
 
         if (clientType === 's3') {
             const s3ClientOpts: S3ClientConfig = {
