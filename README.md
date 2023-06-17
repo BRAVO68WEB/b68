@@ -55,12 +55,6 @@ The dashboard package contains the web dashboard for the B68 Ecosystem. It allow
 
 The bot package contains the Discord bot for the B68 Ecosystem. It allows users to interact with the various services in the ecosystem via a Discord bot. It helps me power my Discord server, get notifications, and much more.
 
-### @packages/wh
-
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fwh%2Fpackage.json&logo=npm&style=for-the-badge)
-
-The webhook package contains the webhook server for the B68 Ecosystem. It allows me to sort and channel notifications from various services in the ecosystem via a webhook server and send them to Discord.
-
 ### @packages/config-store
 
 ![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fwh%2Fpackage.json&logo=go&style=for-the-badge)
