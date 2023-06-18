@@ -1,18 +1,23 @@
 import { Router } from 'express'
-import { makeResponse } from '../../libs'
+import GitlabController from '../../controllers/gitlab.controller'
 
 const router = Router()
+const {
+    fetchSelfGitLabUser,
+    fetchSelfGitLabUserEvents,
+    fetchSelfGitLabUserFollowers,
+    fetchSelfGitLabUserFollowing,
+    fetchSelfGitLabUserGists,
+    fetchSelfGitLabUserRepos,
+    fetchSelfGitLabUserStarred,
+} = new GitlabController()
 
-router.get('/', (_req, res) => {
-    res.send(makeResponse({ message: 'Hello World!' }))
-})
-
-router.all('/err', async (_req, _res, next) => {
-    try {
-        throw new Error('This is an error')
-    } catch (err) {
-        next(err)
-    }
-})
+router.get('/user', fetchSelfGitLabUser)
+router.get('/events', fetchSelfGitLabUserEvents)
+router.get('/followers', fetchSelfGitLabUserFollowers)
+router.get('/following', fetchSelfGitLabUserFollowing)
+router.get('/gists', fetchSelfGitLabUserGists)
+router.get('/repos', fetchSelfGitLabUserRepos)
+router.get('/starred', fetchSelfGitLabUserStarred)
 
 export default router
