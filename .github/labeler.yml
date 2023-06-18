@@ -32,7 +32,7 @@ node:
 - packages/api/**/*
 - packages/cli/**/*
 - packages/bot/**/*
-- packages/b68-app/**/*
+- packages/app/**/*
 
 readme:
 - README.md
