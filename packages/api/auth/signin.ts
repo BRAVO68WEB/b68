@@ -19,4 +19,18 @@ export const signon = () => {
     }
 }
 
+export const signonCLI = () => {
+    const authurl = authClient.authorizationUrl({
+        scope: 'email profile openid roles',
+        code_challenge,
+        code_challenge_method: 'S256',
+        client_id: configKeys.KEYCLOAK_CLIENT_ID,
+        redirect_uri: 'http://localhost:8787/signin/callback',
+    })
+
+    return {
+        authurl,
+    }
+}
+
 export { code_challenge, code_verifier }
