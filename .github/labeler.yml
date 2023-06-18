@@ -33,3 +33,6 @@ node:
 - packages/cli/**/*
 - packages/bot/**/*
 - packages/b68-app/**/*
+
+readme:
+- README.md
