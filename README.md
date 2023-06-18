@@ -51,13 +51,13 @@ The bot package contains the Discord bot for the B68 Ecosystem. It allows users 
 
 ### @packages/config-store
 
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fwh%2Fpackage.json&logo=go&style=for-the-badge)
+![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/bravo68web/b68?filename=packages%2Fconfig-store%2Fgo.mod&style=for-the-badge&logo=go)
 
 The config-store package contains the configuration store for the B68 Ecosystem. It allows me to store and retrieve configuration data for various services in the ecosystem.
 
-### @packages/b68-app (WIP)
+### @packages/app
 
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fb68-app%2Fpackage.json&logo=npm&style=for-the-badge)
+![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/BRAVO68WEB/b68?filename=packages%2Fapp%2Fpackage.json&logo=npm&style=for-the-badge)
 
 The b68-app package contains the admin app for the B68 Ecosystem. It allows users to interact with the various services in the ecosystem via an cross-platform app.
 
