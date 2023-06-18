@@ -8,11 +8,18 @@ import {
     signon,
     revoke,
     APIKey,
-} from '../auth/index'
+    signonCLI,
+    callbackCLI,
+} from '../auth'
 
 export default class AuthController extends APIKey {
     public signin = (_req: Request, res: Response) => {
         const { authurl } = signon()
+        res.redirect(authurl)
+    }
+
+    public signinCLI = (_req: Request, res: Response) => {
+        const { authurl } = signonCLI()
         res.redirect(authurl)
     }
 
@@ -22,6 +29,14 @@ export default class AuthController extends APIKey {
             code: string
         }
         res.send(makeResponse(await callback(session_state, code)))
+    }
+
+    public callbackCLI = async (req: Request, res: Response) => {
+        const { session_state, code } = req.query as {
+            session_state: string
+            code: string
+        }
+        res.send(makeResponse(await callbackCLI(session_state, code)))
     }
 
     public me = (req: ModRequest, res: Response) => {

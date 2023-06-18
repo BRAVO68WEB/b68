@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
       - run: npm install -g yarn
       - run: cd packages/cli/ && yarn && yarn build && yarn g:install
       - run: b68 help
