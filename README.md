@@ -17,17 +17,17 @@ The B68 Ecosystem is a collection of open-source projects developed by me for us
 
 ## 🛠️ Technologies Used
 
-- Node.js
-- Express.js
-- TypeScript
-- Redis
-- Cloudflare R2
-- Hasura Graphql (with PostgreSQL)
-- Commander.js
-- Next.js
-- Go
-- Go-Fiber
-- Javascript
+-   Node.js
+-   Express.js
+-   TypeScript
+-   Redis
+-   Cloudflare R2
+-   Hasura Graphql (with PostgreSQL)
+-   Commander.js
+-   Next.js
+-   Go
+-   Go-Fiber
+-   Javascript
 
 ## 🎁 Eco Setup
 
