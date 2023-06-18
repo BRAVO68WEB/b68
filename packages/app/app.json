@@ -23,12 +23,6 @@
         },
         "web": {
             "favicon": "./assets/favicon.png"
-        },
-        "extra": {
-            "eas": {
-                "projectId": "445a3071-3575-4d7a-bfdc-59318ddf4b86"
-            }
-        },
-        "owner": "bravo68web"
+        }
     }
 }
