@@ -1,13 +1,13 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
-import "react-native-gesture-handler";
+import 'react-native-gesture-handler'
 
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import { useLoadedAssets } from "./hooks/useLoadedAssets";
-import Navigation from "./navigation";
-import { useColorScheme } from "react-native";
+import { useLoadedAssets } from './hooks/useLoadedAssets'
+import Navigation from './navigation'
+import { useColorScheme } from 'react-native'
 
 export default function App() {
     // return (
@@ -16,18 +16,18 @@ export default function App() {
     //         <StatusBar style="auto" />
     //     </View>
     // )
-    const isLoadingComplete = useLoadedAssets();
-    const colorScheme = useColorScheme();
+    const isLoadingComplete = useLoadedAssets()
+    const colorScheme = useColorScheme()
 
     if (!isLoadingComplete) {
-        return null;
+        return null
     } else {
         return (
-        <SafeAreaProvider>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-        </SafeAreaProvider>
-        );
+            <SafeAreaProvider>
+                <Navigation colorScheme={colorScheme} />
+                <StatusBar />
+            </SafeAreaProvider>
+        )
     }
 }
 
