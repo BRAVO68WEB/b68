@@ -11728,14 +11728,13 @@ osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-osu-api-extended@2.5.12:
-  version "2.5.12"
-  resolved "https://registry.yarnpkg.com/osu-api-extended/-/osu-api-extended-2.5.12.tgz#448b1cb091aba6fa30b7a754269f82133cc51419"
-  integrity sha512-7WId3PPLT/5dZMuORmpsDVedR5ojXgPbgZH1JHFO7HLZS/5pKeK7AEHGFhO2i7YsZIF+I16pyT02WBzWrLd/4g==
+osu-api-extended@2.7.5:
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/osu-api-extended/-/osu-api-extended-2.7.5.tgz#ca934696dd39a526f829c4458a7c2df755c19746"
+  integrity sha512-J3aIQEEgQtEVaEa6FCeY03EZNnM0XRB/1IQ7n9mnEMVzn3KZfGFVVE14IkYosBt2JKq42c8EIC57CR2RGAmbnw==
   dependencies:
     lzma-native "^8.0.1"
     node-osr "^1.2.1"
-    open "^8.4.0"
 
 p-finally@^1.0.0:
   version "1.0.0"
