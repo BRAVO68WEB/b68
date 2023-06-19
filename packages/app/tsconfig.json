@@ -1,6 +1,8 @@
 {
-    "extends": "expo/tsconfig.base",
+    "extends": "@bravo68web/tsconfig/base.json",
     "compilerOptions": {
-        "strict": true
+        "jsx": "react",
+        "strict": true,
+        "allowJs": true
     }
 }
