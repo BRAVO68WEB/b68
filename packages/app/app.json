@@ -6,6 +6,7 @@
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "light",
+        "scheme": "b68-app",
         "splash": {
             "image": "./assets/splash.png",
             "resizeMode": "contain",
