@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { makeResponse } from '../libs'
 
 export default class OsuController extends OsuService {
-    public fetchUser = async (req: Request, res: Response) => {
+    public fetchUser = async (_req: Request, res: Response) => {
         try {
             const data = await this.getOsuSelf()
             res.send(makeResponse(data))
@@ -12,7 +12,7 @@ export default class OsuController extends OsuService {
         }
     }
 
-    public fetchBestScores = async (req: Request, res: Response) => {
+    public fetchBestScores = async (_req: Request, res: Response) => {
         try {
             const data = await this.bestScoresSelf()
             res.send(makeResponse(data))
@@ -21,7 +21,7 @@ export default class OsuController extends OsuService {
         }
     }
 
-    public fetchFavBeatmaps = async (req: Request, res: Response) => {
+    public fetchFavBeatmaps = async (_req: Request, res: Response) => {
         try {
             const data = await this.favouriteBeatmapsSelf()
             res.send(makeResponse(data))
@@ -30,7 +30,7 @@ export default class OsuController extends OsuService {
         }
     }
 
-    public fetchRecentScores = async (req: Request, res: Response) => {
+    public fetchRecentScores = async (_req: Request, res: Response) => {
         try {
             const data = await this.recentScoresSelf()
             res.send(makeResponse(data))

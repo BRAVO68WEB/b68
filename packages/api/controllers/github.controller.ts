@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { makeResponse } from '../libs'
 
 export default class GithubController extends GithubService {
-    public fetchSelfGithubUser = async (req: Request, res: Response) => {
+    public fetchSelfGithubUser = async (_req: Request, res: Response) => {
         try {
             const user = await this.getGithubUser()
             res.status(200).json(makeResponse(user))
@@ -14,7 +14,7 @@ export default class GithubController extends GithubService {
         }
     }
 
-    public fetchSelfGithubUserRepos = async (req: Request, res: Response) => {
+    public fetchSelfGithubUserRepos = async (_req: Request, res: Response) => {
         try {
             const username = 'bravo68web'
             const repos = await this.getGithubUserRepos(username)
@@ -26,7 +26,7 @@ export default class GithubController extends GithubService {
         }
     }
 
-    public fetchSelfGithubUserGists = async (req: Request, res: Response) => {
+    public fetchSelfGithubUserGists = async (_req: Request, res: Response) => {
         try {
             const username = 'bravo68web'
             const gists = await this.getGithubUserGists(username)
@@ -39,7 +39,7 @@ export default class GithubController extends GithubService {
     }
 
     public fetchSelfGithubUserFollowers = async (
-        req: Request,
+        _req: Request,
         res: Response
     ) => {
         try {
@@ -54,7 +54,7 @@ export default class GithubController extends GithubService {
     }
 
     public fetchSelfGithubUserFollowing = async (
-        req: Request,
+        _req: Request,
         res: Response
     ) => {
         try {
@@ -68,7 +68,10 @@ export default class GithubController extends GithubService {
         }
     }
 
-    public fetchSelfGithubUserStarred = async (req: Request, res: Response) => {
+    public fetchSelfGithubUserStarred = async (
+        _req: Request,
+        res: Response
+    ) => {
         try {
             const username = 'bravo68web'
             const starred = await this.getGithubUserStarred(username)
@@ -80,7 +83,7 @@ export default class GithubController extends GithubService {
         }
     }
 
-    public fetchSelfGithubUserEvents = async (req: Request, res: Response) => {
+    public fetchSelfGithubUserEvents = async (_req: Request, res: Response) => {
         try {
             const username = 'bravo68web'
             const events = await this.getGithubUserEvents(username)

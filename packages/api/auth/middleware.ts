@@ -5,7 +5,7 @@ import { CustomError } from '../libs/error'
 
 export const middleware = async (
     req: ModRequest | any,
-    res: Response,
+    _res: Response,
     next: NextFunction
 ) => {
     try {

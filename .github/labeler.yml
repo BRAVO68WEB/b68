@@ -1,0 +1,38 @@
+api:
+- packages/api/**/*
+
+cli:
+- packages/cli/**/*
+
+discord:
+- packages/bot/**/*
+
+config-store:
+- packages/config-store/**/*
+
+app:
+- packages/app/**/*
+
+github-actions:
+- .github/workflows/*
+
+github-meta:
+- .github/**/*
+
+dependencies:
+- package.json
+- yarn.lock
+- packages/*/package.json
+- packages/*/go.mod
+
+go:
+- packages/config-store/**/*
+
+node:
+- packages/api/**/*
+- packages/cli/**/*
+- packages/bot/**/*
+- packages/b68-app/**/*
+
+readme:
+- README.md

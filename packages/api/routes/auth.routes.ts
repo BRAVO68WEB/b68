@@ -7,7 +7,11 @@ const authController = new AuthController()
 
 router.get('/signin', authController.signin)
 
+router.get('/signin/cli', authController.signinCLI)
+
 router.get('/signin/callback', authController.callback)
+
+router.get('/signin/callback/cli', authController.callbackCLI)
 
 router.get('/me', middleware, authController.me as any)
 
@@ -27,7 +31,7 @@ router.post('/key/verify', authController.validateKey as any)
 
 router.get('/key/verify', keyware, authController.validateKey as any)
 
-router.get('/', function (req, res) {
+router.get('/', function (_req, res) {
     res.render('pages/auth')
 })
 

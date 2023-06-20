@@ -61,6 +61,7 @@ export interface IConfigKeys {
     DISCORD_SERVER_ID: number
     DISCORD_WEBHOOK_URL: string
     DISCORD_SELF_ID: number
+    GITLAB_PAT: string
 }
 
 export default class ConfigStoreFactory {

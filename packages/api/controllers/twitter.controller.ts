@@ -2,7 +2,7 @@ import { makeResponse } from '../libs'
 import TwitterService from '../services/twitter.service'
 
 export default class TwitterController extends TwitterService {
-    public getTweets = async (req, res) => {
+    public getTweets = async (_req, res) => {
         try {
             const data = await this.getSelfUserTweets()
             res.send(data)
@@ -11,7 +11,7 @@ export default class TwitterController extends TwitterService {
         }
     }
 
-    public getProfile = async (req, res) => {
+    public getProfile = async (_req, res) => {
         try {
             const data = await this.getSelfUserProfile()
             res.send(data)

@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "noEmit": true
+    },
+    "exclude": ["node_modules", "*/**/dist", "assets"],
+    "extends": "@bravo68web/tsconfig/base.json",
+    "include": ["package.json"]
+}

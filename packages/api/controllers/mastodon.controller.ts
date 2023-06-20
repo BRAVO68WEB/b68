@@ -3,7 +3,7 @@ import MastodonService from '../services/mastodon.service'
 import { Request, Response } from 'express'
 
 export default class MastodonController extends MastodonService {
-    public fetchMastodonProfile = async (req: Request, res: Response) => {
+    public fetchMastodonProfile = async (_req: Request, res: Response) => {
         try {
             const data = await this.getMastodonProfile()
             return res.send(makeResponse(data))
@@ -12,7 +12,7 @@ export default class MastodonController extends MastodonService {
         }
     }
 
-    public fetchMastodonStatuses = async (req: Request, res: Response) => {
+    public fetchMastodonStatuses = async (_req: Request, res: Response) => {
         try {
             const data = await this.getMastodonStatuses()
             return res.send(makeResponse(data))

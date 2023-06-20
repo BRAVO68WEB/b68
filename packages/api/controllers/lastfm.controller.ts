@@ -3,7 +3,7 @@ import { Response, Request } from 'express'
 import { makeResponse } from '../libs'
 
 export default class LastFMController extends LastfmService {
-    public fetchUser = async (req: Request, res: Response) => {
+    public fetchUser = async (_req: Request, res: Response) => {
         try {
             const data = await this.user()
             res.send(makeResponse(data))
@@ -12,7 +12,7 @@ export default class LastFMController extends LastfmService {
         }
     }
 
-    public fetchTop = async (req: Request, res: Response) => {
+    public fetchTop = async (_req: Request, res: Response) => {
         try {
             const data = await this.top()
             res.send(makeResponse(data))
@@ -21,7 +21,7 @@ export default class LastFMController extends LastfmService {
         }
     }
 
-    public fetchLoved = async (req: Request, res: Response) => {
+    public fetchLoved = async (_req: Request, res: Response) => {
         try {
             const data = await this.loved()
             res.send(makeResponse(data))
@@ -30,7 +30,7 @@ export default class LastFMController extends LastfmService {
         }
     }
 
-    public fetchCurrent = async (req: Request, res: Response) => {
+    public fetchCurrent = async (_req: Request, res: Response) => {
         const data = await this.current()
         res.send(data)
     }

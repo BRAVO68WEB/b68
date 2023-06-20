@@ -8,7 +8,7 @@ export const serviceAccount = new ServiceAccount()
 
 export const keyware = async (
     req: ModRequest | any,
-    res: Response,
+    _res: Response,
     next: NextFunction
 ) => {
     const authClient = new APIKey()
@@ -34,14 +34,17 @@ export const keyware = async (
         }
 
         const { attributes } = user
-        Object.keys(attributes).forEach((key) => {
-            user[key] = attributes[key][0]
-        })
+        if (attributes) {
+            Object.keys(attributes).forEach((key) => {
+                user[key] = attributes[key][0]
+            })
+        }
 
         req.user = {
             userData: user,
             tokenData: decoded,
         }
+
         next()
     } catch (err: any) {
         next(

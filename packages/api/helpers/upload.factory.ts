@@ -7,7 +7,7 @@ interface UploaderConfig {
 export class UploadFactory {
     public getUploader(config?: UploaderConfig) {
         const storage = multer.memoryStorage({
-            filename: (req, file, cb) => {
+            filename: (_req, file, cb) => {
                 const fileName =
                     file.originalname +
                     '-' +
@@ -19,7 +19,7 @@ export class UploadFactory {
 
         return multer({
             storage: storage,
-            fileFilter: (req, file, cb) => {
+            fileFilter: (_req, file, cb) => {
                 const fileName =
                     file.originalname.split('.')[
                         file.originalname.split('.').length - 2

@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express'
+import { NextFunction, Response } from 'express'
 import { ModRequest } from '../types'
 import Uploader from '../services/upload.service'
 

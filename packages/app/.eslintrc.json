@@ -1,0 +1,11 @@
+{
+    "env": {
+        "browser": true,
+        "amd": true,
+        "node": true
+    },
+    "$schema": "http://json.schemastore.org/eslintrc",
+    "rules": {
+        "no-undefined": "warn"
+    }
+}
