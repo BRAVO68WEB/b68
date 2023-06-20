@@ -1,4 +1,4 @@
-module git.brag.pro/b68/config-store
+module github.com/BRAVO68WEB/b68/packages/config-store
 
 go 1.19
 
