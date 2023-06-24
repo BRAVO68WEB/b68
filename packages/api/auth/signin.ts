@@ -33,4 +33,18 @@ export const signonCLI = () => {
     }
 }
 
+export const signonApp = () => {
+    const authurl = authClient.authorizationUrl({
+        scope: 'email profile openid roles',
+        code_challenge,
+        code_challenge_method: 'S256',
+        client_id: configKeys.KEYCLOAK_CLIENT_ID,
+        redirect_uri: 'https://app.b68.dev/login',
+    })
+
+    return {
+        authurl,
+    }
+}
+
 export { code_challenge, code_verifier }
