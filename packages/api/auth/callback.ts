@@ -3,7 +3,7 @@ import { code_verifier } from './signin'
 
 export const callback = async (session_state: string, code: string) => {
     return authClient.callback(
-        'http://localhost:4038/auth/signin/callback',
+        'https://api.b68.dev/auth/signin/callback',
         { code_verifier, code, session_state, expires_in: '1d' },
         { code_verifier }
     )
@@ -12,6 +12,14 @@ export const callback = async (session_state: string, code: string) => {
 export const callbackCLI = async (session_state: string, code: string) => {
     return authClient.callback(
         'http://localhost:8787/signin/callback',
+        { code_verifier, code, session_state, expires_in: '1d' },
+        { code_verifier }
+    )
+}
+
+export const callbackApp = async (session_state: string, code: string) => {
+    return authClient.callback(
+        'http://app.b68.dev/login',
         { code_verifier, code, session_state, expires_in: '1d' },
         { code_verifier }
     )

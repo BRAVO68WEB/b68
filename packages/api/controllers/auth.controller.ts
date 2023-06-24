@@ -10,6 +10,7 @@ import {
     APIKey,
     signonCLI,
     callbackCLI,
+    signonApp,
 } from '../auth'
 
 export default class AuthController extends APIKey {
@@ -20,6 +21,11 @@ export default class AuthController extends APIKey {
 
     public signinCLI = (_req: Request, res: Response) => {
         const { authurl } = signonCLI()
+        res.redirect(authurl)
+    }
+
+    public signinAPP = (_req: Request, res: Response) => {
+        const { authurl } = signonApp()
         res.redirect(authurl)
     }
 

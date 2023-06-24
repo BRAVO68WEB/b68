@@ -9,6 +9,8 @@ router.get('/signin', authController.signin)
 
 router.get('/signin/cli', authController.signinCLI)
 
+router.get('/signin/app', authController.signinAPP)
+
 router.get('/signin/callback', authController.callback)
 
 router.get('/signin/callback/cli', authController.callbackCLI)
