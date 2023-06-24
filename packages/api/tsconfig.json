@@ -21,6 +21,5 @@
     "ts-node": {
         "swc": true
     },
-    "files": ["types/index.d.ts"],
-    "extends": "@bravo68web/tsconfig/base.json"
+    "files": ["types/index.d.ts"]
 }
