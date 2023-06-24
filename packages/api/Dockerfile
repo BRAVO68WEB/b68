@@ -5,9 +5,10 @@ WORKDIR /usr/src/app
 COPY package.json ./
 
 RUN yarn
-RUN yarn build
 
 COPY . .
+
+RUN yarn build
 
 EXPOSE 9000
 
