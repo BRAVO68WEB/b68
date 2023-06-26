@@ -19,7 +19,7 @@ export const callbackCLI = async (session_state: string, code: string) => {
 
 export const callbackApp = async (session_state: string, code: string) => {
     return authClient.callback(
-        'http://app.b68.dev/login',
+        'b68-admin://callback',
         { code_verifier, code, session_state, expires_in: '1d' },
         { code_verifier }
     )

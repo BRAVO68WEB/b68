@@ -15,6 +15,8 @@ router.get('/signin/callback', authController.callback)
 
 router.get('/signin/callback/cli', authController.callbackCLI)
 
+router.get('/signin/callback/app', authController.callbackAPP)
+
 router.get('/me', middleware, authController.me as any)
 
 router.get('/logout', middleware, authController.logout as any)
