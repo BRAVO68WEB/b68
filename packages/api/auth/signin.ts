@@ -39,7 +39,7 @@ export const signonApp = () => {
         code_challenge,
         code_challenge_method: 'S256',
         client_id: configKeys.KEYCLOAK_CLIENT_ID,
-        redirect_uri: 'https://app.b68.dev/login',
+        redirect_uri: 'b68-admin://callback',
     })
 
     return {

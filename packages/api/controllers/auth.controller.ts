@@ -11,6 +11,7 @@ import {
     signonCLI,
     callbackCLI,
     signonApp,
+    callbackApp,
 } from '../auth'
 
 export default class AuthController extends APIKey {
@@ -43,6 +44,14 @@ export default class AuthController extends APIKey {
             code: string
         }
         res.send(makeResponse(await callbackCLI(session_state, code)))
+    }
+
+    public callbackAPP = async (req: Request, res: Response) => {
+        const { session_state, code } = req.query as {
+            session_state: string
+            code: string
+        }
+        res.send(makeResponse(await callbackApp(session_state, code)))
     }
 
     public me = (req: ModRequest, res: Response) => {
