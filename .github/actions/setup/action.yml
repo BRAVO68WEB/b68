@@ -4,12 +4,6 @@ description: Pull Git Submodules
 runs:
     using: composite
     steps:
-        - name: Pull Git Submodules
-          uses: actions/checkout@v3
-          with:
-              submodules: true
-              repository: BRAVO68WEB/b68
-              token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
         - name: Pull & update submodules recursively
           run: |
             git submodule update --init --recursive
