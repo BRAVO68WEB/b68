@@ -5,6 +5,7 @@ runs:
     using: composite
     steps:
         - name: Pull & update submodules recursively
+          shell: bash
           run: |
             git submodule update --init --recursive
             git submodule update --recursive --remote
