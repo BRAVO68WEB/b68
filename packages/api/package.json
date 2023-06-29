@@ -35,7 +35,7 @@
         "osu-api-extended": "2.5.12",
         "ping": "^0.4.4",
         "redis": "^4.5.1",
-        "typescript": "^4.9.3"
+        "typescript": "^5.1.3"
     },
     "scripts": {
         "dev": "concurrently \"npm run dev:express\" \"npm run dev:hasura\"",
