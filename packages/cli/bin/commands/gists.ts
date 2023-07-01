@@ -1,1 +1,0 @@
-// TODO: Rework GISTS command
