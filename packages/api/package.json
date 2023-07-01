@@ -53,7 +53,7 @@
         "@types/cors": "^2.8.13",
         "@types/morgan": "^1.9.3",
         "@typescript-eslint/eslint-plugin": "^5.59.2",
-        "concurrently": "^7.6.0",
+        "concurrently": "^8.2.0",
         "cross-env": "^7.0.3",
         "graphqurl": "^1.0.1",
         "hasura-cli": "^2.15.1",
