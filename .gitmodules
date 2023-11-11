@@ -1,0 +1,16 @@
+[submodule "packages/b68_admin"]
+	path = packages/b68_admin
+	url = https://github.com/XxThunderBlastxX/b68_admin.git
+[submodule "packages/api"]
+	path = packages/api
+	url = https://github.com/BRAVO68WEB/api.git
+[submodule "packages/bot"]
+	path = packages/bot
+	url = https://github.com/BRAVO68WEB/discord-bot.git
+[submodule "packages/config-store"]
+	path = packages/config-store
+	url = https://github.com/BRAVO68WEB/config-store.git
+[submodule "packages/cli"]
+	path = packages/cli
+	url = https://github.com/BRAVO68WEB/cli.git
+
